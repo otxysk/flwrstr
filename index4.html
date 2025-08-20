@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blooming Beauties | Premium Flower Bouquets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4CAF50;
+            --secondary: #FFC107;
+            --accent: #E91E63;
+            --light: #F9F9F9;
+            --dark: #333;
+            --gray: #777;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: #3e8e41;
+            transform: translateY(-2px);
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            flex: 1;
+        }
+        
+        .active-page {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--accent);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1487530811176-3780de880c2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .product-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: white;
+            padding: 80px 0;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+        }
+        
+        /* Shop Page */
+        .filters {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+        
+        .search-box {
+            margin-bottom: 20px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-group h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .filter-options label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        
+        .filter-options input {
+            margin-right: 8px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        /* Contact Page */
+        .contact {
+            padding: 80px 0;
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .info-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .info-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .info-item i {
+            color: var(--primary);
+            font-size: 20px;
+            margin-right: 15px;
+            min-width: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Cart Page */
+        .cart {
+            padding: 80px 0;
+        }
+        
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .cart-table th,
+        .cart-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+        }
+        
+        .remove-btn {
+            color: var(--accent);
+            cursor: pointer;
+        }
+        
+        .cart-summary {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .summary-total {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .empty-cart i {
+            font-size: 80px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .empty-cart h2 {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        /* Checkout Page */
+        .checkout-container {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .checkout-form {
+            flex: 2;
+        }
+        
+        .order-summary {
+            flex: 1;
+        }
+        
+        .form-section {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .form-section h2 {
+            margin-bottom: 20px;
+            color: var(--primary);
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .payment-method {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--primary);
+        }
+        
+        .payment-method.selected {
+            border-color: var(--primary);
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        
+        .payment-method i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--gray);
+        }
+        
+        /* Order Confirmation */
+        .confirmation {
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .confirmation i {
+            font-size: 100px;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+        
+        .confirmation h1 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .confirmation p {
+            margin-bottom: 30px;
+            color: var(--gray);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* No Results Message */
+        .no-results {
+            text-align: center;
+            padding: 60px 0;
+            grid-column: 1 / -1;
+        }
+        
+        .no-results i {
+            font-size: 80px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .no-results h2 {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: auto;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .footer-col p, .footer-col a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-col a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 10px 15px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .product-grid, .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .cart-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .checkout-container {
+                flex-direction: column;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo" onclick="showPage('home')">
+                <i class="fas fa-spa"></i>
+                Blooming Beauties
+            </div>
+            <nav>
+                <ul>
+                    <li><a class="nav-link active" onclick="showPage('home')">Home</a></li>
+                    <li><a class="nav-link" onclick="showPage('shop')">Shop</a></li>
+                    <li><a class="nav-link" onclick="showPage('about')">About</a></li>
+                    <li><a class="nav-link" onclick="showPage('contact')">Contact</a></li>
+                    <li>
+                        <a class="nav-link cart-icon" onclick="showPage('cart')">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Beautiful Bouquets for Every Occasion</h1>
+                <p>Handcrafted with love and the freshest flowers</p>
+                <a class="btn" onclick="showPage('shop')">Shop Now</a>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Best Sellers</h2>
+                    <p>Discover our most popular flower arrangements</p>
+                </div>
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Spring Bliss Bouquet" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-title">Spring Bliss Bouquet</h3>
+                            <p class="product-price">$49.99</p>
+                            <p class="product-description">A vibrant mix of tulips, daffodils, and hyacinths that captures the essence of spring.</p>
+                            <button class="btn" onclick="addToCart(1, 'Spring Bliss Bouquet', 49.99, 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80')">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Eternal Romance Bouquet" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-title">Eternal Romance Bouquet</h3>
+                            <p class="product-price">$64.99</p>
+                            <p class="product-description">Deep red roses surrounded by delicate baby's breath for the ultimate romantic gesture.</p>
+                            <button class="btn" onclick="addToCart(2, 'Eternal Romance Bouquet', 64.99, 'https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwa90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80')">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1487070218839-94e5b2f4bfb8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Sunshine Delight" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-title">Sunshine Delight</h3>
+                            <p class="product-price">$54.99</p>
+                            <p class="product-description">A cheerful arrangement of sunflowers, daisies, and yellow roses to brighten any room.</p>
+                            <button class="btn" onclick="addToCart(3, 'Sunshine Delight', 54.99, 'https://images.unsplash.com/photo-1487070218839-94e5b2f4bfb8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80')">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Lavender Dreams" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-title">Lavender Dreams</h3>
+                            <p class="product-price">$59.99</p>
+                            <p class="product-description">A soothing arrangement of lavender, lilacs, and white roses for a touch of elegance.</p>
+                            <button class="btn" onclick="addToCart(4, 'Lavender Dreams', 59.99, 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80')">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1441123694162-e54a981ceba5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Our Flower Shop">
+                    </div>
+                    <div class="about-text">
+                        <h2>Our Story</h2>
+                        <p>Blooming Beauties began as a small family-owned flower stand over 20 years ago. Our passion for creating beautiful arrangements that bring joy to people's lives has remained unchanged.</p>
+                        <p>We work directly with local growers to ensure our flowers are always fresh and sustainably sourced. Each bouquet is carefully crafted by our skilled florists to create a unique work of art.</p>
+                        <a class="btn" onclick="showPage('about')">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-title">
+                    <h2>What Our Customers Say</h2>
+                    <p>Don't just take our word for it - hear from our happy customers</p>
+                </div>
+                <div class="testimonial-grid">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The Spring Bliss bouquet I ordered was even more beautiful in person. It lasted for over two weeks! Will definitely be ordering again."</p>
+                        <p class="testimonial-author">- Sarah Johnson</p>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"I send flowers to my wife every month, and Blooming Beauties never disappoints. Their arrangements are always fresh and stunning."</p>
+                        <p class="testimonial-author">- Michael Thompson</p>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The customer service was exceptional. They helped me create a custom bouquet for my mother's birthday that was absolutely perfect."</p>
+                        <p class="testimonial-author">- Emily Rodriguez</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Shop Page -->
+    <div id="shop" class="page">
+        <section class="products">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Bouquet Collection</h2>
+                    <p>Find the perfect arrangement for any occasion</p>
+                </div>
+                
+                <div class="filters">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Search for bouquets..." oninput="filterProducts()">
+                    </div>
+                    
+                    <div class="filter-options">
+                        <div class="filter-group">
+                            <h3>Occasion</h3>
+                            <label><input type="checkbox" name="occasion" value="anniversary" onchange="filterProducts()"> Anniversary</label>
+                            <label><input type="checkbox" name="occasion" value="birthday" onchange="filterProducts()"> Birthday</label>
+                            <label><input type="checkbox" name="occasion" value="wedding" onchange="filterProducts()"> Wedding</label>
+                            <label><input type="checkbox" name="occasion" value="sympathy" onchange="filterProducts()"> Sympathy</label>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <h3>Price Range</h3>
+                            <label><input type="checkbox" name="price" value="0-50" onchange="filterProducts()"> $0 - $50</label>
+                            <label><input type="checkbox" name="price" value="50-100" onchange="filterProducts()"> $50 - $100</label>
+                            <label><input type="checkbox" name="price" value="100-150" onchange="filterProducts()"> $100 - $150</label>
+                            <label><input type="checkbox" name="price" value="150+" onchange="filterProducts()"> $150+</label>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <h3>Flower Type</h3>
+                            <label><input type="checkbox" name="flower" value="rose" onchange="filterProducts()"> Roses</label>
+                            <label><input type="checkbox" name="flower" value="tulip" onchange="filterProducts()"> Tulips</label>
+                            <label><input type="checkbox" name="flower" value="lily" onchange="filterProducts()"> Lilies</label>
+                            <label><input type="checkbox" name="flower" value="sunflower" onchange="filterProducts()"> Sunflowers</label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-buttons">
+                        <button class="btn" onclick="clearFilters()" style="background-color: var(--gray);">Clear Filters</button>
+                        <span id="results-count">Showing 8 products</span>
+                    </div>
+                </div>
+                
+                <div class="product-grid" id="product-grid">
+                    <!-- Products will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section class="about">
+            <div class="container">
+                <div class="section-title">
+                    <h2>About Blooming Beauties</h2>
+                    <p>Learn about our story and commitment to quality</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1441123694162-e54a981ceba5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Our Flower Shop">
+                    </div>
+                    <div class="about-text">
+                        <h2>Our Story</h2>
+                        <p>Blooming Beauties began as a small family-owned flower stand over 20 years ago. Our passion for creating beautiful arrangements that bring joy to people's lives has remained unchanged.</p>
+                        <p>We work directly with local growers to ensure our flowers are always fresh and sustainably sourced. Each bouquet is carefully crafted by our skilled florists to create a unique work of art.</p>
+                        <p>Whether you're celebrating a special occasion or simply want to brighten someone's day, we're here to help you find the perfect floral expression.</p>
+                    </div>
+                </div>
+                
+                <div class="about-content" style="flex-direction: row-reverse; margin-top: 60px;">
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Our Process">
+                    </div>
+                    <div class="about-text">
+                        <h2>Our Process</h2>
+                        <p>We start each day early, selecting the freshest flowers from local markets. Our florists then carefully craft each arrangement by hand, paying attention to every detail.</p>
+                        <p>We believe in sustainable practices throughout our process, from using eco-friendly packaging materials to composting our green waste.</p>
+                        <p>Each bouquet is made to order, ensuring that your flowers arrive as fresh as possible and last longer in your home.</p>
+                    </div>
+                </div>
+                
+                <div class="about-content" style="margin-top: 60px;">
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Our Team">
+                    </div>
+                    <div class="about-text">
+                        <h2>Our Team</h2>
+                        <p>Our team of skilled florists brings years of experience and creativity to every arrangement. We're passionate about flowers and dedicated to creating beautiful bouquets that exceed your expectations.</p>
+                        <p>We regularly participate in workshops and floral design competitions to stay on top of the latest trends and techniques in the industry.</p>
+                        <p>When you choose Blooming Beauties, you're not just getting flowers - you're getting the expertise and care of our entire team.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section class="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                    <p>We'd love to hear from you</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <h3>Get In Touch</h3>
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Address</h4>
+                                    <p>123 Flower Street, Garden City, GC 12345</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p>(555) 123-4567</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>info@bloomingbeauties.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3>Store Hours</h3>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Monday - Friday</h4>
+                                    <p>9:00 AM - 7:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Saturday</h4>
+                                    <p>10:00 AM - 6:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>Sunday</h4>
+                                    <p>11:00 AM - 5:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <div class="info-card">
+                            <h3>Send Us a Message</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label for="name">Your Name</label>
+                                    <input type="text" id="name" placeholder="Enter your name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" placeholder="Enter your email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <input type="text" id="subject" placeholder="Enter subject">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" placeholder="Enter your message"></textarea>
+                                </div>
+                                <button type="submit" class="btn">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Cart Page -->
+    <div id="cart" class="page">
+        <section class="cart">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Your Shopping Cart</h2>
+                    <p>Review your items and proceed to checkout</p>
+                </div>
+                
+                <div id="cart-content">
+                    <!-- Cart content will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Checkout Page -->
+    <div id="checkout" class="page">
+        <section class="cart">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Checkout</h2>
+                    <p>Complete your purchase</p>
+                </div>
+                
+                <div class="checkout-container">
+                    <div class="checkout-form">
+                        <form id="checkout-form">
+                            <div class="form-section">
+                                <h2>Shipping Information</h2>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="first-name">First Name</label>
+                                        <input type="text" id="first-name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last-name">Last Name</label>
+                                        <input type="text" id="last-name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input type="text" id="address" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <input type="text" id="city" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="state">State</label>
+                                        <input type="text" id="state" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="zip">ZIP Code</label>
+                                        <input type="text" id="zip" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-section">
+                                <h2>Payment Method</h2>
+                                <div class="payment-methods">
+                                    <div class="payment-method" onclick="selectPayment('credit-card')">
+                                        <i class="fas fa-credit-card"></i>
+                                        <p>Credit Card</p>
+                                    </div>
+                                    <div class="payment-method" onclick="selectPayment('paypal')">
+                                        <i class="fab fa-paypal"></i>
+                                        <p>PayPal</p>
+                                    </div>
+                                    <div class="payment-method" onclick="selectPayment('apple-pay')">
+                                        <i class="fab fa-apple-pay"></i>
+                                        <p>Apple Pay</p>
+                                    </div>
+                                </div>
+                                
+                                <div id="credit-card-form">
+                                    <div class="form-group">
+                                        <label for="card-number">Card Number</label>
+                                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="expiry">Expiry Date</label>
+                                            <input type="text" id="expiry" placeholder="MM/YY">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cvv">CVV</label>
+                                            <input type="text" id="cvv" placeholder="123">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="card-name">Name on Card</label>
+                                        <input type="text" id="card-name">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="btn" style="width: 100%; padding: 15px; font-size: 18px;" onclick="placeOrder()">Place Order</button>
+                        </form>
+                    </div>
+                    
+                    <div class="order-summary">
+                        <div class="cart-summary">
+                            <h2>Order Summary</h2>
+                            <div id="checkout-summary">
+                                <!-- Order summary will be dynamically generated -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Order Confirmation Page -->
+    <div id="confirmation" class="page">
+        <section class="confirmation">
+            <div class="container">
+                <i class="fas fa-check-circle"></i>
+                <h1>Thank You For Your Order!</h1>
+                <p>Your order has been confirmed and will be shipped within 2 business days. You will receive an email confirmation shortly with your order details and tracking information.</p>
+                <p>Order Number: <strong>BB2023-<span id="order-number"></span></strong></p>
+                <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px;">
+                    <a class="btn" onclick="showPage('shop')">Continue Shopping</a>
+                    <a class="btn" style="background-color: var(--accent);" onclick="printOrder()">Print Receipt</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h3>Blooming Beauties</h3>
+                <p>Creating beautiful floral arrangements since 2002. Bringing nature's beauty to your special moments.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <a onclick="showPage('home')">Home</a>
+                <a onclick="showPage('shop')">Shop</a>
+                <a onclick="showPage('about')">About Us</a>
+                <a onclick="showPage('contact')">Contact</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Service</h3>
+                <a href="#">Shipping & Returns</a>
+                <a href="#">Care Guide</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Flower Street, Garden City</p>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@bloomingbeauties.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Blooming Beauties. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Product data
+        const products = [
+            {
+                id: 1,
+                name: "Spring Bliss Bouquet",
+                price: 49.99,
+                image: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                description: "A vibrant mix of tulips, daffodils, and hyacinths that captures the essence of spring.",
+                occasion: ["birthday", "anniversary"],
+                flowers: ["tulip", "daffodil", "hyacinth"],
+                season: ["spring"]
+            },
+            {
+                id: 2,
+                name: "Eternal Romance Bouquet",
+                price: 64.99,
+                image: "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                description: "Deep red roses surrounded by delicate baby's breath for the ultimate romantic gesture.",
+                occasion: ["anniversary", "wedding", "valentine"],
+                flowers: ["rose"],
+                season: ["all"]
+            },
+            {
+                id: 3,
+                name: "Sunshine Delight",
+                price: 54.99,
+                image: "https://images.unsplash.com/photo-1487070218839-94e5b2f4bfb8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                description: "A cheerful arrangement of sunflowers, daisies, and yellow roses to brighten any room.",
+                occasion: ["birthday", "get well"],
+                flowers: ["sunflower", "daisy", "rose"],
+                season: ["summer"]
+            },
+            {
+                id: 4,
+                name: "Lavender Dreams",
+                price: 59.99,
+                image: "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                description: "A soothing arrangement of lavender, lilacs, and white roses for a touch of elegance.",
+                occasion: ["sympathy", "anniversary"],
+                flowers: ["lavender", "lilac", "rose"],
+                season: ["spring", "summer"]
+            },
+            {
+                id: 5,
+                name: "Autumn Splendor",
+                price: 69.99,
+                image: "https://images.unsplash.com/photo-1485908953667-cf6d88997642?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                description: "Warm tones of orange, red, and yellow for a perfect fall arrangement.",
+                occasion: ["thanksgiving", "anniversary"],
+                flowers: ["chrysanthemum", "marigold"],
+                season: ["autumn"]
+            },
+            {
+                id: 6,
+                name: "Tropical Paradise",
+                price: 74.99,
+                image: "https://images.unsplash.com/photo-1456926631375-92c8ce872def?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                description: "Exotic flowers that bring a touch of the tropics to any space.",
+                occasion: ["birthday", "anniversary"],
+                flowers: ["orchid", "bird of paradise", "heliconia"],
+                season: ["summer"]
+            },
+            {
+                id: 7,
+                name: "Winter Elegance",
+                price: 64.99,
+                image: "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                description: "White roses and evergreens for a sophisticated winter arrangement.",
+                occasion: ["christmas", "sympathy", "wedding"],
+                flowers: ["rose", "pine", "eucalyptus"],
+                season: ["winter"]
+            },
+            {
+                id: 8,
+                name: "Summer Breeze",
+                price: 59.99,
+                image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+                description: "A light and airy arrangement perfect for summer celebrations.",
+                occasion: ["birthday", "anniversary", "wedding"],
+                flowers: ["daisy", "lily", "freesia"],
+                season: ["summer"]
+            }
+        ];
+
+        // Cart data structure
+        let cart = [];
+        let selectedPayment = 'credit-card';
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCart();
+            updateCartDisplay();
+            renderProducts();
+        });
+        
+        // Render products on shop page
+        function renderProducts() {
+            const productGrid = document.getElementById('product-grid');
+            let productsHTML = '';
+            
+            products.forEach(product => {
+                productsHTML += `
+                    <div class="product-card" data-id="${product.id}" data-occasion="${product.occasion.join(',')}" data-flowers="${product.flowers.join(',')}" data-price="${product.price}">
+                        <img src="${product.image}" alt="${product.name}" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-title">${product.name}</h3>
+                            <p class="product-price">$${product.price.toFixed(2)}</p>
+                            <p class="product-description">${product.description}</p>
+                            <button class="btn" onclick="addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            productGrid.innerHTML = productsHTML;
+            updateResultsCount(products.length);
+        }
+        
+        // Filter products based on search and filters
+        function filterProducts() {
+            const searchText = document.getElementById('search-input').value.toLowerCase();
+            const selectedOccasions = getSelectedValues('occasion');
+            const selectedPrices = getSelectedValues('price');
+            const selectedFlowers = getSelectedValues('flower');
+            
+            const filteredProducts = products.filter(product => {
+                // Search text filter
+                const matchesSearch = searchText === '' || 
+                    product.name.toLowerCase().includes(searchText) || 
+                    product.description.toLowerCase().includes(searchText);
+                
+                // Occasion filter
+                const matchesOccasion = selectedOccasions.length === 0 || 
+                    selectedOccasions.some(occasion => product.occasion.includes(occasion));
+                
+                // Flower type filter
+                const matchesFlower = selectedFlowers.length === 0 || 
+                    selectedFlowers.some(flower => product.flowers.includes(flower));
+                
+                // Price filter
+                let matchesPrice = selectedPrices.length === 0;
+                if (!matchesPrice) {
+                    for (const priceRange of selectedPrices) {
+                        if (priceRange === '0-50' && product.price <= 50) matchesPrice = true;
+                        if (priceRange === '50-100' && product.price > 50 && product.price <= 100) matchesPrice = true;
+                        if (priceRange === '100-150' && product.price > 100 && product.price <= 150) matchesPrice = true;
+                        if (priceRange === '150+' && product.price > 150) matchesPrice = true;
+                    }
+                }
+                
+                return matchesSearch && matchesOccasion && matchesFlower && matchesPrice;
+            });
+            
+            displayFilteredProducts(filteredProducts);
+        }
+        
+        // Get selected values from checkboxes
+        function getSelectedValues(name) {
+            const checkboxes = document.querySelectorAll(`input[name="${name}"]:checked`);
+            return Array.from(checkboxes).map(checkbox => checkbox.value);
+        }
+        
+        // Display filtered products
+        function displayFilteredProducts(filteredProducts) {
+            const productGrid = document.getElementById('product-grid');
+            
+            if (filteredProducts.length === 0) {
+                productGrid.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search"></i>
+                        <h2>No products found</h2>
+                        <p>Try adjusting your search or filter criteria</p>
+                        <a class="btn" onclick="clearFilters()">Clear All Filters</a>
+                    </div>
+                `;
+                updateResultsCount(0);
+                return;
+            }
+            
+            let productsHTML = '';
+            
+            filteredProducts.forEach(product => {
+                productsHTML += `
+                    <div class="product-card">
+                        <img src="${product.image}" alt="${product.name}" class="product-img">
+                        <div class="product-info">
+                            <h3 class="product-title">${product.name}</h3>
+                            <p class="product-price">$${product.price.toFixed(2)}</p>
+                            <p class="product-description">${product.description}</p>
+                            <button class="btn" onclick="addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            productGrid.innerHTML = productsHTML;
+            updateResultsCount(filteredProducts.length);
+        }
+        
+        // Update results count
+        function updateResultsCount(count) {
+            document.getElementById('results-count').textContent = `Showing ${count} product${count !== 1 ? 's' : ''}`;
+        }
+        
+        // Clear all filters
+        function clearFilters() {
+            document.getElementById('search-input').value = '';
+            
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            renderProducts();
+        }
+        
+        // Page navigation functionality
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active-page');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active-page');
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Find and activate the corresponding nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.textContent.toLowerCase() === pageId || 
+                    (link.classList.contains('cart-icon') && pageId === 'cart')) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Special handling for cart and checkout pages
+            if (pageId === 'cart') {
+                updateCartDisplay();
+            } else if (pageId === 'checkout') {
+                updateCheckoutSummary();
+            } else if (pageId === 'shop') {
+                filterProducts();
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Cart functionality
+        function addToCart(id, name, price, image) {
+            // Check if product already in cart
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            // Save cart to localStorage
+            saveCart();
+            
+            // Update cart display
+            updateCartCount();
+            
+            // Show confirmation message
+            showNotification(`${name} added to cart!`);
+        }
+        
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCart();
+            updateCartDisplay();
+            updateCartCount();
+        }
+        
+        function updateQuantity(id, change) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity += change;
+                
+                // Remove item if quantity is 0
+                if (item.quantity <= 0) {
+                    removeFromCart(id);
+                } else {
+                    saveCart();
+                    updateCartDisplay();
+                    updateCartCount();
+                }
+            }
+        }
+        
+        function saveCart() {
+            localStorage.setItem('bloomingBeautiesCart', JSON.stringify(cart));
+        }
+        
+        function loadCart() {
+            const savedCart = localStorage.getItem('bloomingBeautiesCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+            }
+            updateCartCount();
+        }
+        
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+        
+        function updateCartDisplay() {
+            const cartContent = document.getElementById('cart-content');
+            
+            if (cart.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h2>Your cart is empty</h2>
+                        <p>Looks like you haven't added any bouquets to your cart yet.</p>
+                        <a class="btn" onclick="showPage('shop')">Start Shopping</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            let cartHTML = `
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                cartHTML += `
+                    <tr class="cart-item">
+                        <td>
+                            <div style="display: flex; align-items: center;">
+                                <img src="${item.image}" alt="${item.name}">
+                                <div style="margin-left: 15px;">
+                                    <h3>${item.name}</h3>
+                                </div>
+                            </div>
+                        </td>
+                        <td>$${item.price.toFixed(2)}</td>
+                        <td>
+                            <div class="quantity-control">
+                                <div class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</div>
+                                <input type="text" class="quantity-input" value="${item.quantity}" readonly>
+                                <div class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</div>
+                            </div>
+                        </td>
+                        <td>$${itemTotal.toFixed(2)}</td>
+                        <td><i class="fas fa-trash remove-btn" onclick="removeFromCart(${item.id})"></i></td>
+                    </tr>
+                `;
+            });
+            
+            const shipping = subtotal > 0 ? 12.99 : 0;
+            const tax = subtotal * 0.08;
+            const total = subtotal + shipping + tax;
+            
+            cartHTML += `
+                    </tbody>
+                </table>
+                
+                <div class="cart-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-item">
+                        <span>Subtotal</span>
+                        <span>$${subtotal.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Shipping</span>
+                        <span>$${shipping.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Tax</span>
+                        <span>$${tax.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-item summary-total">
+                        <span>Total</span>
+                        <span>$${total.toFixed(2)}</span>
+                    </div>
+                    
+                    <div style="margin-top: 30px; display: flex; justify-content: space-between;">
+                        <a class="btn" onclick="showPage('shop')">Continue Shopping</a>
+                        <a class="btn" style="background-color: var(--accent);" onclick="showPage('checkout')">Proceed to Checkout</a>
+                    </div>
+                </div>
+            `;
+            
+            cartContent.innerHTML = cartHTML;
+        }
+        
+        function updateCheckoutSummary() {
+            const checkoutSummary = document.getElementById('checkout-summary');
+            
+            let subtotal = 0;
+            let summaryHTML = '';
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                summaryHTML += `
+                    <div class="summary-item">
+                        <span>${item.name} x${item.quantity}</span>
+                        <span>$${itemTotal.toFixed(2)}</span>
+                    </div>
+                `;
+            });
+            
+            const shipping = subtotal > 0 ? 12.99 : 0;
+            const tax = subtotal * 0.08;
+            const total = subtotal + shipping + tax;
+            
+            summaryHTML += `
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span>$${subtotal.toFixed(2)}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Shipping</span>
+                    <span>$${shipping.toFixed(2)}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Tax</span>
+                    <span>$${tax.toFixed(2)}</span>
+                </div>
+                <div class="summary-item summary-total">
+                    <span>Total</span>
+                    <span>$${total.toFixed(2)}</span>
+                </div>
+            `;
+            
+            checkoutSummary.innerHTML = summaryHTML;
+        }
+        
+        function selectPayment(method) {
+            selectedPayment = method;
+            
+            // Update UI
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            document.querySelectorAll('.payment-method').forEach(el => {
+                if (el.querySelector('p').textContent.toLowerCase().includes(method)) {
+                    el.classList.add('selected');
+                }
+            });
+        }
+        
+        function placeOrder() {
+            // Simple form validation
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const state = document.getElementById('state').value;
+            const zip = document.getElementById('zip').value;
+            const phone = document.getElementById('phone').value;
+            
+            if (!firstName || !lastName || !address || !city || !state || !zip || !phone) {
+                showNotification('Please fill out all required fields', 'error');
+                return;
+            }
+            
+            // Generate random order number
+            const orderNumber = Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('order-number').textContent = orderNumber;
+            
+            // Clear cart
+            cart = [];
+            saveCart();
+            updateCartCount();
+            
+            // Show confirmation page
+            showPage('confirmation');
+        }
+        
+        function showNotification(message, type = 'success') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.padding = '15px 20px';
+            notification.style.borrowRadius = '4px';
+            notification.style.color = 'white';
+            notification.style.zIndex = '1000';
+            notification.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+            
+            if (type === 'success') {
+                notification.style.background = 'var(--primary)';
+            } else {
+                notification.style.background = 'var(--accent)';
+            }
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 500);
+            }, 3000);
+        }
+        
+        function printOrder() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
